@@ -15,6 +15,10 @@ mongoose.connect('mongodb+srv://Amit_MongoDB:Mynameis0@cluster0.0alpo.mongodb.ne
 })
 
 
+
+app.set(express.static(path.join(__dirname,'build')))
+
+
 app.delete('/delete/:id',async(req,res)=>{
     const garbage= await TaskModel.findByIdAndRemove(req.params.id)
     res.send("testimonial deleted")
@@ -42,7 +46,7 @@ app.post('/Add',async(req,res)=>{
         const user= await TaskModel.create({Photo,Name,Post,Testimonial_Description});
         
         // user.save();
-        res.status(400).json('thanks')   
+        res.status(200).json('thanks')   
         res.json(user)
         
     } catch (error) {
